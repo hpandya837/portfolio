@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, intial-scale=1.0">
+  <title>Portfolio</title>
+  <!--   custom icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+  <link href="style3.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+
+<body>
+  <canvas id="c"></canvas>
+  <!--
+  starting the header
+  -->
+  <nav class="nav">
+    <div class="container-fluid">
+      <div class="logo">
+        <a href="page2.html">Hardav Pandya </a>
+      </div>
+      <div id="mainListDiv" class="main_list">
+        <ul class="navlinks">
+          <!-- add the pages here -->
+          <li><a href="sprojects.html">Sophomore Projects</a></li>
+          <li><a href="page2.html">About Me</a></li>
+
+
+        </ul>
+      </div>
+      <span class="navTrigger">
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+  <div id="carousel">
+    <figure id="spinner">
+      <img src="camp.png">
+      <img src="elements.png" alt>
+      <img src="farmers.png" alt>
+      <img src="pie.png" alt>
+      <img src="sea.png" alt>
+      <img src="duke.png" alt>
+      <img src="bear.png" alt>
+      <img src="sch.png" alt>      
+    </figure>
+  </div>
+  <span style="float:left" class="ss-icon" onclick="galleryspin('-')">&lt;</span>
+  <span style="float:right" class="ss-icon" onclick="galleryspin('')">&gt;</span>
+<li>
+<ul><a href="https://Camping-Packing-List-HardavP.honors-web-design-purple-7.repl.co"></a>
+  </ul>
+<a href="https://First-10-Elements-HardavP.honors-web-design-purple-7.repl.co"></a>
+  <a href="https://Farmers-Market-Bootstrap-Grid-HardavP.honors-web-design-purple-7.repl.co"></a>
+  <a href="https://tca.honors-web-design-purple-7.repl.co"></a>
+  <a href="https://Aquatic-Animals-TCA2-HardavP.honors-web-design-purple-7.repl.co"></a>
+  </li>
+
+  <script>
+    var c = document.getElementById('c');
+    var cxt = c.getContext("2d");
+
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+
+
+
+
+    var chinese = "My Works";
+    chinese = chinese.split("");
+
+    var font_size = 10;
+    var columns = c.width / font_size;
+
+    var drops = [];
+
+    for (var x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function draw() {
+      cxt.fillStyle = "rgba(0,0,0,0.05)";
+      cxt.fillRect(0, 0, c.width, c.height);
+
+      cxt.fillStyle = "#0F0";
+      cxt.font = font_size + 'px arial';
+
+      document.getElementById("c").style.zIndex = "-1";
+      for (var i = 0; i < drops.length; i++) {
+        var text = chinese[Math.floor(Math.random() * chinese.length)];
+        cxt.fillText(text, i * font_size, drops[i] * font_size);
+
+        if (drops[i] * font_size > c.height && Math.random() > 0.975)
+          drops[i] = 0;
+
+        //increment y coordinate
+        drops[i]++;
+      }
+
+    }
+    setInterval(draw, 33);
+   // document.body.style.background = 'url(' + c.toDataURL() + ')';
+  </script>
+
+  <script>  var angle = 0;
+    function galleryspin(sign) {
+      spinner = document.querySelector("#spinner");
+      if (!sign) {angle = angle + 45;} else {angle = angle - 45;}
+      spinner.setAttribute("style", "-webkit-transform: rotateY(" + angle + "deg); -moz-transform: rotateY(" + angle + "deg); transform: rotateY(" + angle + "deg);");
+    } </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+ <script>
+    $(window).scroll(function () {
+      if ($(document).scrollTop() > 50) {
+        $('.nav').addClass('affix');
+        console.log("OK");
+      } else {
+        $('.nav').removeClass('affix');
+      }
+    });
+
+
+    $('.navTrigger').click(function () {
+      $(this).toggleClass('active');
+      console.log("Clicked menu");
+      $("#mainListDiv").toggleClass("show_list");
+      $("#mainListDiv").fadeIn();
+
+    });
+  </script>
+
+</body>
+
+</html>
